@@ -1,833 +1,290 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday! 🎂</title>
+<title>1st Anniversary ❤️</title>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap');
+body{
+  margin:0;
+  font-family: "Arial";
+  background: linear-gradient(135deg,#ffd6e7,#ffeef5);
+  overflow-x:hidden;
+  color:#333;
+}
 
-  :root {
-    --purple: #7B5EA7;
-    --pink: #E91E8C;
-    --blue: #4A90D9;
-    --yellow: #FFD700;
-    --ditto: #9B59B6;
-    --ditto-light: #C39BD3;
-    --bg: #0D0221;
-    --card-bg: #1a0a2e;
-    --text: #f0e6ff;
-    --accent: #FF6EC7;
-  }
+.container{
+  max-width:600px;
+  margin:0 auto;
+  padding:20px;
+  text-align:center;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin-top:50px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+button{
+  background:#ff6fae;
+  color:white;
+  border:none;
+  padding:10px 20px;
+  border-radius:20px;
+  margin:10px;
+  cursor:pointer;
+  font-size:16px;
+}
 
-  /* ===== STARS BG ===== */
-  .stars {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-  }
-  .stars::before, .stars::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-image: 
-      radial-gradient(1px 1px at 10% 20%, white, transparent),
-      radial-gradient(1px 1px at 30% 10%, white, transparent),
-      radial-gradient(1px 1px at 50% 30%, white, transparent),
-      radial-gradient(1px 1px at 70% 15%, white, transparent),
-      radial-gradient(1px 1px at 90% 25%, white, transparent),
-      radial-gradient(1px 1px at 20% 50%, white, transparent),
-      radial-gradient(1px 1px at 40% 60%, white, transparent),
-      radial-gradient(1px 1px at 60% 45%, white, transparent),
-      radial-gradient(1px 1px at 80% 55%, white, transparent),
-      radial-gradient(1px 1px at 15% 70%, white, transparent),
-      radial-gradient(1px 1px at 35% 80%, white, transparent),
-      radial-gradient(1px 1px at 55% 75%, white, transparent),
-      radial-gradient(1px 1px at 75% 65%, white, transparent),
-      radial-gradient(1px 1px at 95% 85%, white, transparent),
-      radial-gradient(1.5px 1.5px at 5% 90%, rgba(255,255,255,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 25% 35%, rgba(255,255,255,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 45% 55%, rgba(255,255,255,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 65% 85%, rgba(255,255,255,0.8), transparent),
-      radial-gradient(1.5px 1.5px at 85% 40%, rgba(255,255,255,0.8), transparent);
-    animation: twinkle 4s ease-in-out infinite alternate;
-  }
-  .stars::after {
-    animation-delay: -2s;
-    background-image: 
-      radial-gradient(1px 1px at 8% 15%, rgba(255,200,255,0.7), transparent),
-      radial-gradient(1px 1px at 28% 45%, rgba(200,255,255,0.7), transparent),
-      radial-gradient(1px 1px at 48% 75%, rgba(255,255,200,0.7), transparent),
-      radial-gradient(1px 1px at 68% 35%, rgba(255,200,255,0.7), transparent),
-      radial-gradient(1px 1px at 88% 65%, rgba(200,200,255,0.7), transparent),
-      radial-gradient(2px 2px at 18% 85%, rgba(255,200,200,0.9), transparent),
-      radial-gradient(2px 2px at 38% 25%, rgba(200,255,200,0.9), transparent),
-      radial-gradient(2px 2px at 58% 95%, rgba(200,200,255,0.9), transparent),
-      radial-gradient(2px 2px at 78% 5%, rgba(255,255,200,0.9), transparent),
-      radial-gradient(2px 2px at 98% 45%, rgba(255,200,255,0.9), transparent);
-  }
-  @keyframes twinkle { from { opacity: 0.6; } to { opacity: 1; } }
+button:hover{
+  background:#ff4f9a;
+}
 
-  /* ===== SCREENS ===== */
-  .screen {
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .screen.hidden { display: none !important; }
+.option{
+  display:block;
+  width:100%;
+}
 
-  /* ===== QUIZ SCREEN ===== */
-  #quiz-screen {
-    background: transparent;
-  }
+.hidden{display:none;}
 
-  .quiz-container {
-    background: rgba(26, 10, 46, 0.92);
-    border: 2px solid var(--ditto-light);
-    border-radius: 20px;
-    padding: 30px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 0 40px rgba(155, 89, 182, 0.3), 0 0 80px rgba(155, 89, 182, 0.1);
-    backdrop-filter: blur(10px);
-  }
+.fade{
+  animation:fade 0.5s ease;
+}
 
-  .pokeball-icon {
-    font-size: 50px;
-    text-align: center;
-    margin-bottom: 10px;
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
 
-  .quiz-title {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    text-align: center;
-    margin-bottom: 6px;
-    line-height: 1.6;
-    text-shadow: 0 0 10px rgba(255,110,199,0.5);
-  }
-  .quiz-subtitle {
-    text-align: center;
-    color: var(--ditto-light);
-    font-size: 14px;
-    margin-bottom: 25px;
-  }
+.title{
+  font-size:24px;
+  font-weight:bold;
+}
 
-  .question-card {
-    background: rgba(155, 89, 182, 0.1);
-    border: 1px solid rgba(195, 155, 211, 0.3);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  .question-number {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 8px;
-    color: var(--yellow);
-    margin-bottom: 10px;
-  }
-  .question-text {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 15px;
-    line-height: 1.5;
-  }
+.small{
+  font-size:14px;
+  color:#777;
+}
 
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .option-btn {
-    background: rgba(74, 144, 217, 0.15);
-    border: 1.5px solid rgba(74, 144, 217, 0.4);
-    border-radius: 10px;
-    padding: 12px 10px;
-    color: var(--text);
-    font-family: 'Nunito', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
-  }
-  .option-btn:hover {
-    background: rgba(74, 144, 217, 0.35);
-    border-color: var(--blue);
-    transform: translateY(-2px);
-  }
-  .option-btn.correct {
-    background: rgba(46, 213, 115, 0.25);
-    border-color: #2ed573;
-    color: #2ed573;
-  }
-  .option-btn.wrong {
-    background: rgba(255, 71, 87, 0.25);
-    border-color: #ff4757;
-    color: #ff4757;
-    animation: shake 0.4s ease;
-  }
-  .option-btn:disabled { cursor: default; }
+.heart{
+  font-size:30px;
+  animation:beat 1s infinite;
+}
 
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-6px); }
-    40%, 80% { transform: translateX(6px); }
-  }
-
-  .quiz-feedback {
-    text-align: center;
-    font-size: 14px;
-    font-weight: 700;
-    min-height: 22px;
-    margin-top: 10px;
-    color: var(--accent);
-  }
-
-  .progress-bar {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
-    height: 8px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--ditto), var(--accent));
-    border-radius: 10px;
-    transition: width 0.4s ease;
-  }
-
-  /* ===== CARD SCREEN ===== */
-  #card-screen {
-    padding: 30px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-  }
-
-  /* Confetti */
-  .confetti-wrapper {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
-    overflow: hidden;
-  }
-  .confetti-piece {
-    position: absolute;
-    width: 10px; height: 10px;
-    opacity: 0;
-    animation: confettiFall linear infinite;
-  }
-  @keyframes confettiFall {
-    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-  }
-
-  /* Pokemon Card */
-  .pokemon-card {
-    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%);
-    border: 3px solid var(--yellow);
-    border-radius: 20px;
-    max-width: 500px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 
-      0 0 0 1px rgba(255,215,0,0.3),
-      0 0 30px rgba(255,215,0,0.2),
-      0 0 80px rgba(155,89,182,0.3),
-      0 20px 60px rgba(0,0,0,0.5);
-    position: relative;
-    z-index: 2;
-    animation: cardEntrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  @keyframes cardEntrance {
-    from { transform: scale(0.5) rotateY(-20deg); opacity: 0; }
-    to { transform: scale(1) rotateY(0deg); opacity: 1; }
-  }
-
-  /* Holographic shimmer */
-  .pokemon-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      105deg,
-      transparent 40%,
-      rgba(255,255,255,0.05) 45%,
-      rgba(255,200,255,0.08) 50%,
-      rgba(200,255,255,0.06) 55%,
-      transparent 60%
-    );
-    animation: holo 4s linear infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
-  @keyframes holo {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-
-  .card-header {
-    background: linear-gradient(135deg, #4a0e8f, #7B5EA7);
-    padding: 15px 20px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 2px solid var(--yellow);
-  }
-  .card-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    color: var(--yellow);
-    text-shadow: 0 0 10px rgba(255,215,0,0.5);
-    line-height: 1.6;
-  }
-  .card-hp {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
-    color: var(--yellow);
-    text-align: right;
-  }
-  .hp-val { font-size: 20px; }
-
-  .card-image-area {
-    background: linear-gradient(180deg, #3d1a6e 0%, #1a0a2e 100%);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    min-height: 220px;
-  }
-  .card-image-area::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(155,89,182,0.2) 0%, transparent 70%);
-  }
-
-  /* Ditto SVG */
-  .ditto-svg {
-    width: 160px; height: 140px;
-    position: relative; z-index: 2;
-    animation: dittoFloat 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(195,155,211,0.6));
-  }
-  @keyframes dittoFloat {
-    0%, 100% { transform: translateY(0) scaleX(1); }
-    25% { transform: translateY(-8px) scaleX(1.05); }
-    75% { transform: translateY(-4px) scaleX(0.97); }
-  }
-
-  .card-flavor {
-    font-size: 11px;
-    color: rgba(195,155,211,0.7);
-    font-style: italic;
-    text-align: center;
-    margin-top: 10px;
-    position: relative; z-index: 2;
-  }
-
-  .card-body {
-    padding: 20px;
-    border-top: 1px solid rgba(255,215,0,0.2);
-  }
-
-  .card-type-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(155,89,182,0.3);
-    border: 1px solid var(--ditto-light);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--ditto-light);
-    margin-bottom: 15px;
-  }
-
-  .moves-section { margin-bottom: 20px; }
-  .move-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  .move-cost {
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .move-info { flex: 1; }
-  .move-name {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    color: var(--yellow);
-    margin-bottom: 6px;
-  }
-  .move-desc {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.6;
-  }
-  .move-damage {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
-    color: var(--accent);
-    flex-shrink: 0;
-    align-self: center;
-  }
-
-  .wishes-section {
-    background: rgba(155,89,182,0.08);
-    border: 1px solid rgba(195,155,211,0.2);
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 20px;
-  }
-  .wishes-label {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 7px;
-    color: var(--yellow);
-    margin-bottom: 12px;
-  }
-  .wishes-text {
-    font-size: 14px;
-    line-height: 1.9;
-    color: #e0d0ff;
-  }
-  .wishes-text p { margin-bottom: 10px; }
-  .wishes-text p:last-child { margin-bottom: 0; }
-
-  .card-footer {
-    background: rgba(0,0,0,0.3);
-    border-top: 2px solid var(--yellow);
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 11px;
-    color: rgba(195,155,211,0.6);
-    font-family: 'Press Start 2P', monospace;
-  }
-  .rarity-stars {
-    color: var(--yellow);
-    font-size: 14px;
-    letter-spacing: 3px;
-    text-shadow: 0 0 8px rgba(255,215,0,0.6);
-  }
-
-  .music-btn {
-    position: fixed;
-    bottom: 25px; right: 25px;
-    width: 54px; height: 54px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--ditto), var(--purple));
-    border: 2px solid var(--yellow);
-    color: var(--yellow);
-    font-size: 22px;
-    cursor: pointer;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 20px rgba(155,89,182,0.5);
-    transition: transform 0.2s;
-  }
-  .music-btn:hover { transform: scale(1.1); }
-  .music-btn.playing { animation: musicPulse 1s ease-in-out infinite; }
-  @keyframes musicPulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(155,89,182,0.5); }
-    50% { box-shadow: 0 4px 35px rgba(255,215,0,0.5); }
-  }
-
-  /* Responsive */
-  @media (max-width: 480px) {
-    .options-grid { grid-template-columns: 1fr; }
-    .quiz-title { font-size: 9px; }
-    .card-name { font-size: 8px; }
-    .move-name { font-size: 6px; }
-  }
-
-  /* Shine rays */
-  .rays {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 300px; height: 300px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-  .ray {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 150px; height: 2px;
-    background: linear-gradient(90deg, rgba(255,215,0,0.3), transparent);
-    transform-origin: left center;
-  }
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
 </style>
 </head>
+
 <body>
 
-<div class="stars"></div>
+<div class="container">
 
-<!-- ===== QUIZ SCREEN ===== -->
-<div id="quiz-screen" class="screen">
-  <div class="quiz-container">
-    <div class="pokeball-icon">⚪</div>
-    <div class="quiz-title">⚡ POKEMON TRAINER<br>VERIFICATION ⚡</div>
-    <div class="quiz-subtitle">Prove you're a real trainer to unlock this card!</div>
-    
-    <div class="progress-bar">
-      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-    </div>
-
-    <div class="question-card">
-      <div class="question-number" id="q-number">QUESTION 1 / 5</div>
-      <div class="question-text" id="q-text">Loading...</div>
-      <div class="options-grid" id="options-grid"></div>
-      <div class="quiz-feedback" id="quiz-feedback"></div>
-    </div>
-  </div>
+<!-- START PAGE -->
+<div id="start" class="card">
+  <div class="heart">❤️</div>
+  <h2>Happy 1st Anniversary</h2>
+  <p>給我最愛的寶寶 🐻🐰</p>
+  <p class="small">如果全部答對，就可以看到我想對你說的話。</p>
+  <button onclick="startGame()">開始遊戲</button>
 </div>
 
-<!-- ===== CARD SCREEN ===== -->
-<div id="card-screen" class="screen hidden">
-  <div class="confetti-wrapper" id="confetti-wrapper"></div>
+<!-- QUIZ -->
+<div id="quiz" class="card hidden"></div>
 
-  <div class="pokemon-card" id="pokemon-card">
-    <!-- Shine rays -->
-    <div class="card-image-area" style="position:relative">
-      <div class="rays" id="rays"></div>
-    </div>
-    
-    <!-- Header -->
-    <div class="card-header">
-      <div>
-        <div class="card-name">🌟 BIRTHDAY BOY<br>— DITTO EDITION —</div>
-      </div>
-      <div class="card-hp">
-        <div style="font-size:8px; color: rgba(255,215,0,0.7);">HP</div>
-        <div class="hp-val">999</div>
-      </div>
-    </div>
+<!-- FINAL -->
+<div id="final" class="card hidden">
+  <h2>🎉 恭喜全部答對</h2>
+  <p>其實今天不是測驗。</p>
+  <p>是我想陪你再走一次我們的回憶 ❤️</p>
 
-    <!-- Image Area -->
-    <div class="card-image-area" style="position:relative; min-height:220px;">
-      <!-- Rays -->
-      <div id="rays-real" style="position:absolute; top:50%; left:50%; width:300px; height:300px; transform:translate(-50%,-50%); z-index:1; pointer-events:none;"></div>
-
-      <!-- Ditto SVG -->
-      <svg class="ditto-svg" viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
-        <!-- Party hat -->
-        <polygon points="80,10 65,45 95,45" fill="#FFD700" stroke="#E6B800" stroke-width="1.5"/>
-        <polygon points="80,10 72,30 88,30" fill="#FF6EC7"/>
-        <circle cx="80" cy="10" r="4" fill="#FF4757"/>
-        <!-- Ditto body -->
-        <ellipse cx="80" cy="88" rx="48" ry="42" fill="#C39BD3"/>
-        <ellipse cx="80" cy="90" rx="46" ry="40" fill="#9B59B6" opacity="0.3"/>
-        <!-- Shine -->
-        <ellipse cx="60" cy="70" rx="12" ry="8" fill="rgba(255,255,255,0.2)" transform="rotate(-20 60 70)"/>
-        <!-- Face - happy ditto -->
-        <circle cx="68" cy="84" r="6" fill="#2C1654"/>
-        <circle cx="92" cy="84" r="6" fill="#2C1654"/>
-        <circle cx="70" cy="82" r="2" fill="white"/>
-        <circle cx="94" cy="82" r="2" fill="white"/>
-        <!-- Smile curve -->
-        <path d="M68 96 Q80 108 92 96" stroke="#2C1654" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Blush -->
-        <circle cx="57" cy="92" r="8" fill="#FF6EC7" opacity="0.4"/>
-        <circle cx="103" cy="92" r="8" fill="#FF6EC7" opacity="0.4"/>
-        <!-- Confetti on Ditto -->
-        <circle cx="55" cy="65" r="3" fill="#FFD700" opacity="0.8"/>
-        <circle cx="108" cy="72" r="2.5" fill="#FF4757" opacity="0.8"/>
-        <circle cx="100" cy="60" r="2" fill="#2ed573" opacity="0.8"/>
-        <circle cx="62" cy="110" r="2" fill="#4A90D9" opacity="0.7"/>
-        <!-- Party streamers -->
-        <path d="M95 46 Q110 55 118 48" stroke="#FF6EC7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <path d="M65 46 Q50 55 42 48" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- Type label below -->
-      </svg>
-
-      <div class="card-flavor">※ Transform Pokémon — Birthday Forme ※</div>
-    </div>
-
-    <!-- Body -->
-    <div class="card-body">
-      <div class="card-type-badge">🔮 NORMAL-TYPE &nbsp;|&nbsp; ✨ BIRTHDAY FORME</div>
-
-      <div class="moves-section">
-        <div class="move-item">
-          <div class="move-cost">🟣</div>
-          <div class="move-info">
-            <div class="move-name">TRANSFORM</div>
-            <div class="move-desc">Transforming into the best version of himself every single year — this Pokémon continues to evolve beyond expectations.</div>
-          </div>
-          <div class="move-damage">∞</div>
-        </div>
-        <div class="move-item">
-          <div class="move-cost">⭐</div>
-          <div class="move-info">
-            <div class="move-name">DREAM SMASH</div>
-            <div class="move-desc">Turns every dream into reality. Critical hit guaranteed. No weakness, no miss.</div>
-          </div>
-          <div class="move-damage">9999</div>
-        </div>
-      </div>
-
-      <div class="wishes-section">
-        <div class="wishes-label">✉ TRAINER'S MESSAGE</div>
-        <div class="wishes-text">
-          <p>🎂 <strong>Happy Birthday!</strong> Hope this day treats u well — u deserve all the good things coming your way.</p>
-
-          <p>🌟 Just like Ditto, u have this rare ability to adapt and thrive in any situation. That's genuinely something not everyone has. Keep being u.</p>
-
-          <p>💰 Wishing u nothing but abundance this year — may the money flow, opportunities keep knocking, and every effort u put in come back multiplied. Stay consistent, the results will follow.</p>
-
-          <p>🎯 Hope all your dreams start becoming real, one by one. No rush — but may every step forward feel meaningful and closer to where u wanna be.</p>
-
-          <p>💪 Stay healthy, always. Strong body, clear mind, good energy — that's the real foundation. Take care of yourself, seriously.</p>
-
-          <p>🃏 May every Pokémon card u pull this year be a hit — shiny, rare, exactly what u wanted. Life edition included.</p>
-
-          <p>🚀 Here's to a great year ahead. Level up, enjoy the ride, and know that people around u are rooting for u.</p>
-
-          <p>Happy Birthday, have a good one! 🎉✨</p>
-        </div>
-      </div>
-
-      <div style="text-align:center; font-size:12px; color: rgba(195,155,211,0.5); font-style:italic; margin-top:5px;">
-        "Like Ditto, you have the rare power to become anything<br>you set your mind to. Use it well, Trainer. 💜"
-      </div>
-    </div>
-
-    <div class="card-footer">
-      <div style="font-size:8px;">NO. 132 — SPECIAL ED.</div>
-      <div class="rarity-stars">★★★★★</div>
-      <div style="font-size:8px;">2025 BDAY SET</div>
-    </div>
-  </div>
-
-  <div style="height: 80px;"></div>
+  <button onclick="showLetter()">打開最後一封信</button>
 </div>
 
-<!-- Music Button -->
-<button class="music-btn hidden" id="music-btn" onclick="toggleMusic()" title="Toggle Music">🎵</button>
+<!-- LETTER -->
+<div id="letter" class="card hidden">
+  <h2>💌 給最愛的寶寶</h2>
+  <p style="text-align:left;line-height:1.6">
 
-<!-- Audio: Pokemon Center BGM via Web Audio API -->
+不知不覺，我們已經一起走過一年了。<br><br>
+
+這一年裡，我們一起經歷了好多第一次。<br>
+第一次見面、第一次約會、第一次搭郵輪、第一次去澳門……<br><br>
+
+雖然現在還是遠距離，但我從來沒有後悔遇見你。<br><br>
+
+謝謝你一直陪著我、包容我、照顧我。<br><br>
+
+我很期待未來可以和你一起完成更多夢想。<br>
+一起搭郵輪107天，一起去更多地方，一起寫更多故事。<br><br>
+
+希望以後每年的今天，陪在我身邊的人，依然都是你。<br><br>
+
+<b>一週年快樂，我愛你 ❤️</b><br><br>
+
+Jeanny<br>
+2026.06.28
+
+  </p>
+
+  <h3>❤️ To be continued...</h3>
+</div>
+
+</div>
+
 <script>
-// ===== QUESTIONS =====
-const questions = [
-  {
-    q: "Ditto adalah Pokémon nomor berapa dalam Pokédex nasional?",
-    options: ["#128", "#132", "#138", "#141"],
-    answer: 1
-  },
-  {
-    q: "Apa kemampuan (Ability) andalan Ditto?",
-    options: ["Intimidate", "Levitate", "Limber", "Imposter"],
-    answer: 3
-  },
-  {
-    q: "Eevee bisa berevolusi menjadi apa kalau diberi 'Fire Stone'?",
-    options: ["Vaporeon", "Jolteon", "Flareon", "Espeon"],
-    answer: 2
-  },
-  {
-    q: "Satu-satunya gerakan (move) yang bisa dipelajari Ditto adalah?",
-    options: ["Splash", "Transform", "Mimic", "Copycat"],
-    answer: 1
-  },
-  {
-    q: "Pokemon apa yang berevolusi menjadi Gengar?",
-    options: ["Gastly → Haunter → Gengar", "Ghastly → Ghost → Gengar", "Misdreavus → Gengar", "Shuppet → Banette → Gengar"],
-    answer: 0
-  }
+
+let current = 0;
+
+const quiz = [
+{
+q:"我們第一次見面是什麼時候？",
+options:["2025/06/28","2025/06/26","2025/07/01","2025/05/28"],
+answer:0,
+msg:"❤️ 一切故事從這一天開始"
+},
+
+{
+q:"第一次兩個人一起約會吃什麼？",
+options:["金樹日本料理、金龍酒店","奧匠餐飲","雞佬江記","香港翠華"],
+answer:0,
+msg:"🍣 第一個屬於我們的回憶"
+},
+
+{
+q:"第一次一起搭郵輪是什麼時候？",
+options:["2025/10/05－10/10","2025/10/01－10/06","2025/09/05－09/10","2025/11/05－11/10"],
+answer:0,
+msg:"🚢 希望還有很多次"
+},
+
+{
+q:"我們最後一次見面是什麼時候？",
+options:["2026/04/22","2026/04/20","2026/04/28","2026/05/01"],
+answer:0,
+msg:"🫂 不是最後一次"
+},
+
+{
+q:"還記得第一次見面的我嗎？我穿什麼？",
+options:[
+"粉紅上衣＋牛仔褲＋黑外套",
+"白色上衣＋牛仔褲＋黑外套",
+"黑色洋裝",
+"藍色上衣"
+],
+answer:0,
+msg:"💗 謝謝你還記得我"
+},
+
+{
+q:"如果可以立刻旅行，你想去哪？",
+options:[
+"只要跟你一起都可以 ❤️",
+"日本",
+"冰島",
+"瑞士"
+],
+answer:0,
+msg:"✈️ 因為有你"
+},
+
+{
+q:"這一年最想謝謝你的是什麼？",
+options:[
+"一直陪在我身邊 ❤️",
+"每天叫我起床",
+"常常欺負我",
+"搶我食物"
+],
+answer:0,
+msg:"❤️ 謝謝你"
+},
+
+{
+q:"我們現在是什麼關係？",
+options:[
+"好朋友",
+"同事",
+"網友",
+"一輩子的戀人 ❤️"
+],
+answer:3,
+msg:"💍 希望是永遠"
+},
+
+{
+q:"下一個一起完成的目標？",
+options:[
+"郵輪107天 ❤️",
+"環遊世界",
+"去南極",
+"去月球"
+],
+answer:0,
+msg:"🚢 一起完成"
+},
+
+{
+q:"最後一題，你願意一直陪著我嗎？",
+options:[
+"願意 ❤️",
+"當然願意 ❤️"
+],
+answer:0,
+msg:"❤️ 不能跑掉喔"
+}
 ];
 
-let currentQ = 0;
-let score = 0;
-let answered = false;
-
-function renderQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('q-number').textContent = `QUESTION ${currentQ + 1} / ${questions.length}`;
-  document.getElementById('q-text').textContent = q.q;
-  document.getElementById('quiz-feedback').textContent = '';
-  
-  const grid = document.getElementById('options-grid');
-  grid.innerHTML = '';
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = `${['A','B','C','D'][i]}. ${opt}`;
-    btn.onclick = () => selectAnswer(i, btn);
-    grid.appendChild(btn);
-  });
-
-  const pct = (currentQ / questions.length) * 100;
-  document.getElementById('progress-fill').style.width = pct + '%';
-  answered = false;
+function startGame(){
+  document.getElementById("start").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
+  loadQ();
 }
 
-function selectAnswer(idx, btn) {
-  if (answered) return;
-  answered = true;
+function loadQ(){
+  const q = quiz[current];
+  let html = `<h3>${q.q}</h3>`;
 
-  const q = questions[currentQ];
-  const allBtns = document.querySelectorAll('.option-btn');
-  allBtns.forEach(b => b.disabled = true);
+  q.options.forEach((opt,i)=>{
+    html += `<button class="option" onclick="check(${i})">${opt}</button>`;
+  });
 
-  if (idx === q.answer) {
-    btn.classList.add('correct');
-    score++;
-    document.getElementById('quiz-feedback').textContent = '✅ Correct! Great Trainer!';
-    document.getElementById('quiz-feedback').style.color = '#2ed573';
-    setTimeout(() => {
-      currentQ++;
-      if (currentQ >= questions.length) {
-        showCard();
-      } else {
-        renderQuestion();
-      }
-    }, 1200);
+  document.getElementById("quiz").innerHTML = html;
+}
+
+function check(i){
+  const q = quiz[current];
+
+  if(i === q.answer){
+    alert("答對了 ❤️\n" + q.msg);
+    current++;
+
+    if(current >= quiz.length){
+      document.getElementById("quiz").classList.add("hidden");
+      document.getElementById("final").classList.remove("hidden");
+    } else {
+      loadQ();
+    }
+
   } else {
-    btn.classList.add('wrong');
-    allBtns[q.answer].classList.add('correct');
-    document.getElementById('quiz-feedback').textContent = '❌ Wrong! A real Trainer would know this...';
-    document.getElementById('quiz-feedback').style.color = '#ff4757';
-    setTimeout(() => {
-      // Reset quiz from question 1 (penalty!)
-      currentQ = 0;
-      score = 0;
-      document.getElementById('quiz-feedback').textContent = '';
-      renderQuestion();
-    }, 2200);
+    alert("再想一下 🥺");
   }
 }
 
-function showCard() {
-  document.getElementById('quiz-screen').classList.add('hidden');
-  const card = document.getElementById('card-screen');
-  card.classList.remove('hidden');
-  document.getElementById('music-btn').classList.remove('hidden');
-  
-  spawnConfetti();
-  setTimeout(startMusic, 600);
+function showLetter(){
+  document.getElementById("final").classList.add("hidden");
+  document.getElementById("letter").classList.remove("hidden");
 }
 
-// ===== CONFETTI =====
-function spawnConfetti() {
-  const wrapper = document.getElementById('confetti-wrapper');
-  const colors = ['#FFD700','#FF6EC7','#9B59B6','#4A90D9','#2ed573','#FF4757','#ffffff'];
-  const shapes = ['■', '●', '▲', '★', '♦'];
-  
-  for (let i = 0; i < 80; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    el.textContent = shapes[Math.floor(Math.random() * shapes.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.color = colors[Math.floor(Math.random() * colors.length)];
-    el.style.fontSize = (Math.random() * 12 + 8) + 'px';
-    el.style.animationDuration = (Math.random() * 4 + 3) + 's';
-    el.style.animationDelay = (Math.random() * 5) + 's';
-    wrapper.appendChild(el);
-  }
-}
-
-// ===== WEB AUDIO MUSIC =====
-let audioCtx = null;
-let musicPlaying = false;
-let gainNode = null;
-let loopTimeout = null;
-
-// Simplified Pokemon-ish melody notes (frequencies)
-const melody = [
-  // Happy birthday melody approximation in C major, Pokémon style
-  {f: 523, d: 0.3}, {f: 523, d: 0.15}, {f: 587, d: 0.45},
-  {f: 523, d: 0.45}, {f: 698, d: 0.45}, {f: 659, d: 0.9},
-  {f: 523, d: 0.3}, {f: 523, d: 0.15}, {f: 587, d: 0.45},
-  {f: 523, d: 0.45}, {f: 784, d: 0.45}, {f: 698, d: 0.9},
-  {f: 523, d: 0.3}, {f: 523, d: 0.15}, {f: 1047, d: 0.45},
-  {f: 880, d: 0.45}, {f: 698, d: 0.45}, {f: 659, d: 0.45}, {f: 587, d: 0.6},
-  {f: 932, d: 0.3}, {f: 932, d: 0.15}, {f: 880, d: 0.45},
-  {f: 698, d: 0.45}, {f: 784, d: 0.45}, {f: 698, d: 1.2},
-];
-
-function playNote(freq, start, duration, ctx, gain) {
-  const osc = ctx.createOscillator();
-  const envGain = ctx.createGain();
-  osc.connect(envGain);
-  envGain.connect(gain);
-  osc.type = 'square';
-  osc.frequency.setValueAtTime(freq, start);
-  envGain.gain.setValueAtTime(0.001, start);
-  envGain.gain.linearRampToValueAtTime(0.15, start + 0.02);
-  envGain.gain.exponentialRampToValueAtTime(0.001, start + duration - 0.01);
-  osc.start(start);
-  osc.stop(start + duration);
-}
-
-function playMelody() {
-  if (!audioCtx || !musicPlaying) return;
-  let t = audioCtx.currentTime + 0.1;
-  melody.forEach(n => {
-    playNote(n.f, t, n.d * 0.95, audioCtx, gainNode);
-    t += n.d;
-  });
-  const totalDur = melody.reduce((s, n) => s + n.d, 0);
-  loopTimeout = setTimeout(playMelody, (totalDur + 0.5) * 1000);
-}
-
-function startMusic() {
-  if (musicPlaying) return;
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  gainNode = audioCtx.createGain();
-  gainNode.gain.value = 1;
-  gainNode.connect(audioCtx.destination);
-  musicPlaying = true;
-  document.getElementById('music-btn').textContent = '🔊';
-  document.getElementById('music-btn').classList.add('playing');
-  playMelody();
-}
-
-function stopMusic() {
-  if (loopTimeout) clearTimeout(loopTimeout);
-  if (audioCtx) { audioCtx.close(); audioCtx = null; }
-  gainNode = null;
-  musicPlaying = false;
-  document.getElementById('music-btn').textContent = '🎵';
-  document.getElementById('music-btn').classList.remove('playing');
-}
-
-function toggleMusic() {
-  if (musicPlaying) { stopMusic(); } else { startMusic(); }
-}
-
-// Init
-renderQuestion();
 </script>
+
 </body>
 </html>
