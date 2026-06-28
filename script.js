@@ -8,47 +8,20 @@
 let currentQuestion = 1;
 const TOTAL_QUESTIONS = 10;
 
-// ── MUSIC ─────────────────────────────────────
-let musicPlaying = false;
-let musicStarted = false;
-
-function startMusic() {
-  const btn = document.getElementById('music-btn');
-  btn.classList.remove('hidden', 'paused');
-  btn.textContent = '🎵';
-
-  if (!musicStarted) {
-    // Buka YouTube di iframe tersembunyi dengan autoplay=1
-    const iframe = document.createElement('iframe');
-    iframe.id = 'yt-player';
-    iframe.style.display = 'none';
-    iframe.allow = 'autoplay; encrypted-media';
-    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=1&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
-    document.body.appendChild(iframe);
-    musicStarted = true;
-    musicPlaying = true;
-  }
-}
-
-function toggleMusic() {
-  const btn = document.getElementById('music-btn');
-  const iframe = document.getElementById('yt-player');
-
-  if (!iframe) return;
-
-  if (musicPlaying) {
-    // Pause: reload dengan autoplay=0
-    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=0&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
-    musicPlaying = false;
-    btn.classList.add('paused');
-    btn.textContent = '🔇';
-  } else {
-    // Play: reload dengan autoplay=1
-    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=1&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
-    musicPlaying = true;
-    btn.classList.remove('paused');
-    btn.textContent = '🎵';
-  }
+// ─── PAGE TRANSITIONS ───────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  const page = document.getElementById(id);
+  page.style.display = 'flex';
+  // Trigger reflow then add active
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      page.classList.add('active');
+    });
+  });
 }
 
 // ─── HOME PAGE SETUP ────────────────────────
@@ -75,7 +48,6 @@ function spawnHomeHearts() {
 
 // ─── START GAME ─────────────────────────────
 function startGame() {
-  startMusic();
   showPage('page-quiz');
   addProgressBar();
   showQuestion(1);
