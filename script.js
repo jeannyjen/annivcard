@@ -9,60 +9,46 @@ let currentQuestion = 1;
 const TOTAL_QUESTIONS = 10;
 
 // ── MUSIC ─────────────────────────────────────
-let player = null;
 let musicPlaying = false;
-
-function initYouTubePlayer() {
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-}
-
-window.onYouTubeIframeAPIReady = function() {
-  player = new YT.Player('yt-player', {
-    events: { onReady: function() {} }
-  });
-};
+let musicStarted = false;
 
 function startMusic() {
-  if (!player || typeof player.playVideo !== 'function') return;
-  player.playVideo();
-  musicPlaying = true;
   const btn = document.getElementById('music-btn');
   btn.classList.remove('hidden', 'paused');
   btn.textContent = '🎵';
+
+  if (!musicStarted) {
+    // Buka YouTube di iframe tersembunyi dengan autoplay=1
+    const iframe = document.createElement('iframe');
+    iframe.id = 'yt-player';
+    iframe.style.display = 'none';
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=1&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
+    document.body.appendChild(iframe);
+    musicStarted = true;
+    musicPlaying = true;
+  }
 }
 
 function toggleMusic() {
-  if (!player || typeof player.playVideo !== 'function') return;
   const btn = document.getElementById('music-btn');
+  const iframe = document.getElementById('yt-player');
+
+  if (!iframe) return;
+
   if (musicPlaying) {
-    player.pauseVideo();
+    // Pause: reload dengan autoplay=0
+    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=0&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
     musicPlaying = false;
     btn.classList.add('paused');
     btn.textContent = '🔇';
   } else {
-    player.playVideo();
+    // Play: reload dengan autoplay=1
+    iframe.src = 'https://www.youtube.com/embed/D9ksLn6hZ7Q?autoplay=1&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0';
     musicPlaying = true;
     btn.classList.remove('paused');
     btn.textContent = '🎵';
   }
-}
-
-// ─── PAGE TRANSITIONS ───────────────────────
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-    p.style.display = 'none';
-  });
-  const page = document.getElementById(id);
-  page.style.display = 'flex';
-  // Trigger reflow then add active
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      page.classList.add('active');
-    });
-  });
 }
 
 // ─── HOME PAGE SETUP ────────────────────────
@@ -434,5 +420,4 @@ document.head.appendChild(style);
 // ─── INIT ────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initHome();
-   initYouTubePlayer();
 });
