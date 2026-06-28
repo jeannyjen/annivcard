@@ -825,35 +825,6 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* ── MUSIC BUTTON ────────────────────────── */
-
-.music-btn {
-  position: fixed;
-  bottom: 1.4rem;
-  right: 1.4rem;
-  z-index: 500;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 2px solid rgba(242,167,179,0.6);
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(8px);
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(212,110,126,0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.music-btn:hover {
-  transform: scale(1.12);
-  box-shadow: 0 6px 22px rgba(212,110,126,0.35);
-}
-.music-btn.paused {
-  opacity: 0.6;
-}
-
 /* =============================================
 ============================================= */
 
