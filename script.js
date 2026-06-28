@@ -8,6 +8,47 @@
 let currentQuestion = 1;
 const TOTAL_QUESTIONS = 10;
 
+// ── MUSIC ─────────────────────────────────────
+let player = null;
+let musicPlaying = false;
+
+function initYouTubePlayer() {
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+}
+
+window.onYouTubeIframeAPIReady = function() {
+  player = new YT.Player('yt-player', {
+    events: { onReady: function() {} }
+  });
+};
+
+function startMusic() {
+  if (!player || typeof player.playVideo !== 'function') return;
+  player.playVideo();
+  musicPlaying = true;
+  const btn = document.getElementById('music-btn');
+  btn.classList.remove('hidden', 'paused');
+  btn.textContent = '🎵';
+}
+
+function toggleMusic() {
+  if (!player || typeof player.playVideo !== 'function') return;
+  const btn = document.getElementById('music-btn');
+  if (musicPlaying) {
+    player.pauseVideo();
+    musicPlaying = false;
+    btn.classList.add('paused');
+    btn.textContent = '🔇';
+  } else {
+    player.playVideo();
+    musicPlaying = true;
+    btn.classList.remove('paused');
+    btn.textContent = '🎵';
+  }
+}
+
 // ─── PAGE TRANSITIONS ───────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => {
@@ -48,6 +89,7 @@ function spawnHomeHearts() {
 
 // ─── START GAME ─────────────────────────────
 function startGame() {
+   startMusic();
   showPage('page-quiz');
   addProgressBar();
   showQuestion(1);
@@ -392,4 +434,5 @@ document.head.appendChild(style);
 // ─── INIT ────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initHome();
+   initYouTubePlayer();
 });
