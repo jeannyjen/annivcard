@@ -75,7 +75,7 @@ function spawnHomeHearts() {
 
 // ─── START GAME ─────────────────────────────
 function startGame() {
-startMusic();
+  startMusic();
   showPage('page-quiz');
   addProgressBar();
   showQuestion(1);
