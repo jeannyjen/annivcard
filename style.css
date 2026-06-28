@@ -505,7 +505,6 @@ body {
 #page-letter {
   background: linear-gradient(160deg, #fff6f8 0%, #fce8ed 100%);
   padding: 3rem 1.5rem;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
