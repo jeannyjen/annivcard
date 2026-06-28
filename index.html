@@ -11,19 +11,14 @@
 </head>
 <body>
 
-  <!-- ======================== MUSIC PLAYER ======================== -->
-  <iframe
-    id="yt-player"
-    src="https://www.youtube.com/embed/D9ksLn6hZ7Q?enablejsapi=1&autoplay=0&loop=1&playlist=D9ksLn6hZ7Q&controls=0&mute=0"
-    allow="autoplay; encrypted-media"
-    style="display:none"
-    title="background music">
-  </iframe>
+  <!-- MUSIC PLAYER -->
+<audio id="bg-music" loop preload="none">
+  <source src="https://jeannyjen.github.io/annivcard/music.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- Music toggle button -->
-  <button id="music-btn" class="music-btn hidden" onclick="toggleMusic()" title="音樂開關">
-    🎵
-  </button>
+<button id="music-btn" class="music-btn hidden" onclick="toggleMusic()" title="音樂開關">
+  🎵
+</button>
 
   <!-- ======================== PAGE 0: HOME ======================== -->
   <section id="page-home" class="page active">
