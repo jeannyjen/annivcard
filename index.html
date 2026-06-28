@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy 1st Anniversary ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ======================== PAGE 0: HOME ======================== -->
+  <section id="page-home" class="page active">
+    <div class="stars-bg"></div>
+    <div class="home-content">
+      <h1 class="title-main animate-fadein" style="animation-delay:0.3s">❤️ Happy 1st Anniversary ❤️</h1>
+      <div class="home-bubu animate-fadein" style="animation-delay:0.9s">
+        <img src="images/Bubu-wave.gif" alt="Bubu wave" class="home-bubu-gif" />
+      </div>
+      <p class="subtitle animate-fadein" style="animation-delay:1.2s">給我最愛的寶寶</p>
+      <p class="body-text animate-fadein" style="animation-delay:2.4s">
+        我準備了一個小小的回憶遊戲。<br/>
+        如果全部答對，<br/>
+        就可以看到我真正想對你說的話。❤️
+      </p>
+      <button class="btn-main animate-fadein" style="animation-delay:3.4s" onclick="startGame()">開始遊戲</button>
+    </div>
+    <div class="floating-hearts" id="home-hearts"></div>
+  </section>
+
+  <!-- ======================== PAGE QUIZ ======================== -->
+  <section id="page-quiz" class="page">
+    <div class="quiz-bg"></div>
+
+    <!-- Q1 -->
+    <div class="quiz-card" id="q1">
+      <div class="memory-label">🌸 Memory 01</div>
+      <p class="quiz-question">我們第一次見面是什麼時候？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,1)">2025/06/28</button>
+        <button class="opt" data-correct="false" onclick="answer(this,1)">2025/06/29</button>
+        <button class="opt" data-correct="false" onclick="answer(this,1)">2025/07/28</button>
+        <button class="opt" data-correct="false" onclick="answer(this,1)">2025/06/30</button>
+      </div>
+      <div class="reward hidden" id="reward1">
+        <img src="images/First-meet.jpeg" alt="First meet" class="reward-img" />
+        <p class="reward-text">一切故事，就是從這一天開始。❤️</p>
+        <button class="btn-next" onclick="nextQuestion(2)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-card hidden" id="q2">
+      <div class="memory-label">🌸 Memory 02</div>
+      <p class="quiz-question">還記得第一次見面的我嗎？<br/>我穿什麼？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,2)">粉紅色上衣、牛仔褲、黑色外套</button>
+        <button class="opt" data-correct="false" onclick="answer(this,2)">白色上衣、黑色裙子</button>
+        <button class="opt" data-correct="false" onclick="answer(this,2)">藍色連衣裙</button>
+        <button class="opt" data-correct="false" onclick="answer(this,2)">黑色上衣、白色褲子</button>
+      </div>
+      <div class="reward hidden" id="reward2">
+        <img src="images/Bubu-hug.gif" alt="Bubu Dudu hug" class="reward-gif" />
+        <p class="reward-text">原來你真的都有記住。🥹</p>
+        <button class="btn-next" onclick="nextQuestion(3)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-card hidden" id="q3">
+      <div class="memory-label">🌸 Memory 03</div>
+      <p class="quiz-question">第一次兩個人一起約會吃什麼？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,3)">金樹日本料理、金龍酒店</button>
+        <button class="opt" data-correct="false" onclick="answer(this,3)">奧匠餐飲</button>
+        <button class="opt" data-correct="false" onclick="answer(this,3)">雞佬江記</button>
+        <button class="opt" data-correct="false" onclick="answer(this,3)">香港翠華</button>
+      </div>
+      <div class="reward hidden" id="reward3">
+        <img src="images/First-date.jpeg" alt="First date" class="reward-img" />
+        <p class="reward-text">第一個只屬於我們的約會🫶🏻</p>
+        <button class="btn-next" onclick="nextQuestion(4)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-card hidden" id="q4">
+      <div class="memory-label">🌸 Memory 04</div>
+      <p class="quiz-question">第一次一起去日本是哪裡？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,4)">大阪-和歌山 + 沖繩</button>
+        <button class="opt" data-correct="false" onclick="answer(this,4)">高知+沖繩</button>
+        <button class="opt" data-correct="false" onclick="answer(this,4)">京都+大阪-和歌山</button>
+        <button class="opt" data-correct="false" onclick="answer(this,4)">福岡+東京</button>
+      </div>
+      <div class="reward hidden" id="reward4">
+        <img src="images/Japan.jpeg" alt="Japan trip" class="reward-img" />
+        <p class="reward-text">第一次一起飛去日本，好多美好的回憶。✈️</p>
+        <button class="btn-next" onclick="nextQuestion(5)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-card hidden" id="q5">
+      <div class="memory-label">🌸 Memory 05</div>
+      <p class="quiz-question">第一次一起搭郵輪是什麼時候？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,5)">2025/10/05－2025/10/10</button>
+        <button class="opt" data-correct="false" onclick="answer(this,5)">2025/10/01－2025/10/06</button>
+        <button class="opt" data-correct="false" onclick="answer(this,5)">2025/09/05－2025/09/10</button>
+        <button class="opt" data-correct="false" onclick="answer(this,5)">2025/11/05－2025/11/10</button>
+      </div>
+      <div class="reward hidden" id="reward5">
+        <img src="images/Cruise.jpeg" alt="Cruise" class="reward-img" />
+        <p class="reward-text">在郵輪上的每一天都像夢一樣。🚢</p>
+        <button class="btn-next" onclick="nextQuestion(6)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="quiz-card hidden" id="q6">
+      <div class="memory-label">🌸 Memory 06</div>
+      <p class="quiz-question">第一次收到你送我花是在什麼時候？ 🌹</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,6)">情人節</button>
+        <button class="opt" data-correct="false" onclick="answer(this,6)">第一次見面</button>
+        <button class="opt" data-correct="false" onclick="answer(this,6)">聖誕節</button>
+        <button class="opt" data-correct="false" onclick="answer(this,6)">郵輪旅行</button>
+      </div>
+      <div class="reward hidden" id="reward6">
+        <img src="images/Fisrt-flower.jpeg" alt="First flower" class="reward-img" />
+        <p class="reward-text">謝謝你送我的第一束花，我到現在都還記得。❤️</p>
+        <button class="btn-next" onclick="nextQuestion(7)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="quiz-card hidden" id="q7">
+      <div class="memory-label">🌸 Memory 07</div>
+      <p class="quiz-question">第一次來台灣的時候初體驗吃了什麼？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,7)">海底撈+美式烤肉</button>
+        <button class="opt" data-correct="false" onclick="answer(this,7)">臭豆腐+地瓜球</button>
+        <button class="opt" data-correct="false" onclick="answer(this,7)">美式烤肉+日式料理</button>
+        <button class="opt" data-correct="false" onclick="answer(this,7)">臭豆腐+海底撈</button>
+      </div>
+      <div class="reward hidden" id="reward7">
+        <img src="images/Taiwan.jpeg" alt="Taiwan" class="reward-img" />
+        <p class="reward-text">第一次帶你來台灣，希望你喜歡！🍢</p>
+        <button class="btn-next" onclick="nextQuestion(8)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="quiz-card hidden" id="q8">
+      <div class="memory-label">🌸 Memory 08</div>
+      <p class="quiz-question">這一年裡，我最想謝謝你的是什麼？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,8)">一直陪在我身邊 ❤️</button>
+        <button class="opt" data-correct="false" onclick="answer(this,8)">每天叫我起床 😴</button>
+        <button class="opt" data-correct="false" onclick="answer(this,8)">常常欺負我</button>
+        <button class="opt" data-correct="false" onclick="answer(this,8)">聽我講話</button>
+      </div>
+      <div class="reward hidden" id="reward8">
+        <img src="images/Bubu-kiss.gif" alt="Bubu kiss" class="reward-gif" />
+        <p class="reward-text">謝謝你這一年一直在我身邊。❤️</p>
+        <button class="btn-next" onclick="nextQuestion(9)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="quiz-card hidden" id="q9">
+      <div class="memory-label">🌸 Memory 09</div>
+      <p class="quiz-question">下一個我們一起想完成的目標？</p>
+      <div class="quiz-options">
+        <button class="opt" data-correct="true" onclick="answer(this,9)">郵輪107天 🚢</button>
+        <button class="opt" data-correct="false" onclick="answer(this,9)">環遊世界</button>
+        <button class="opt" data-correct="false" onclick="answer(this,9)">去看極光</button>
+        <button class="opt" data-correct="false" onclick="answer(this,9)">去南極</button>
+      </div>
+      <div class="reward hidden" id="reward9">
+        <img src="images/Kapal.gif" alt="Ship" class="reward-gif" />
+        <p class="reward-text">其實以上都對，但是你最想要的是郵輪107天🚢</p>
+        <button class="btn-next" onclick="nextQuestion(10)">繼續 →</button>
+      </div>
+    </div>
+
+    <!-- Q10: Final Question -->
+    <div class="quiz-card hidden" id="q10" data-final="true">
+      <div class="memory-label">🌸 Final Question</div>
+      <div class="bubu-appear">
+        <img src="images/IMG_5116.gif" alt="Bubu Dudu" class="bubu-gif" />
+      </div>
+      <p class="quiz-question final-q">最後一個問題……<br/>你愛我嗎？</p>
+      <div class="quiz-options final-opts">
+        <button class="opt final-opt" data-correct="semi" onclick="answerFinal(this,'love1')">❤️ 愛</button>
+        <button class="opt final-opt" data-correct="true" onclick="answerFinal(this,'love2')">❤️ 很愛</button>
+      </div>
+      <div class="reward hidden" id="reward-love1">
+        <p class="reward-text love-text">我也愛你 ❤️</p>
+        <p class="reward-subtext">不過……你確定只是「愛」嗎？試試看另一個答案？😏</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ======================== PAGE WIN ======================== -->
+  <section id="page-win" class="page">
+    <canvas id="confetti-canvas"></canvas>
+    <div class="win-content">
+      <img src="images/IMG_5117.gif" alt="Bubu Dudu hug" class="win-gif" />
+      <h2 class="win-title">🎉 恭喜全部答對！</h2>
+      <div class="win-poem" id="win-poem">
+        <p class="win-line" style="--i:0">停一下。</p>
+        <p class="win-line" style="--i:1">其實……</p>
+        <p class="win-line" style="--i:2">今天的重點，</p>
+        <p class="win-line" style="--i:3">從來都不是測驗。</p>
+        <p class="win-line" style="--i:4">而是想陪你，</p>
+        <p class="win-line" style="--i:5">再一起回憶一次，</p>
+        <p class="win-line" style="--i:6">屬於我們的這一年。❤️</p>
+      </div>
+      <button class="btn-main btn-letter" id="btn-letter" onclick="goToLetter()">打開最後一封信 💌</button>
+    </div>
+  </section>
+
+  <!-- ======================== PAGE LETTER ======================== -->
+  <section id="page-letter" class="page">
+    <div class="letter-wrapper">
+      <div class="letter-card">
+        <div class="letter-header">💌 給最愛的寶寶：</div>
+        <div class="letter-body" id="letter-body">
+          <p>不知不覺，我們已經一起走過一年了。</p>
+          <p>這一年裡，我們一起經歷了好多第一次。</p>
+          <p>第一次見面、第一次約會、第一次搭郵輪、第一次一起旅行……</p>
+          <p>每一段回憶，我都很珍惜。</p>
+          <p>雖然現在我們還是遠距離，不能像以前一樣常常見面，但我從來沒有後悔遇見你。</p>
+          <p>謝謝你一直陪著我、包容我、照顧我，也謝謝你一直努力維繫我們的感情。</p>
+          <p>我很期待未來，可以和你一起完成更多夢想，一起搭郵輪107天，一起去更多地方，一起寫下更多屬於我們的故事。</p>
+          <p>希望以後每年的今天，陪在我身邊的人，依然都是你。</p>
+          <p class="letter-love">一週年快樂，我愛你。❤️</p>
+        </div>
+        <div class="letter-footer">
+          <span>Love,</span><br/>
+          <span class="letter-name">Jeanny</span><br/>
+          <span>2026.06.28</span>
+        </div>
+        <button class="btn-main btn-ending" onclick="goToEnding()">繼續 ✨</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== PAGE ENDING ======================== -->
+  <section id="page-ending" class="page night-sky">
+    <div class="stars-field" id="stars-field"></div>
+    <div class="ending-content">
+      <img src="images/IMG_5118.gif" alt="Bubu and Dudu stargazing" class="ending-gif" />
+      <div class="ending-poem" id="ending-poem">
+        <p class="ep-line" style="--j:0">有些日期，</p>
+        <p class="ep-line" style="--j:1">也許有一天會忘記。</p>
+        <p class="ep-line" style="--j:2">有些細節，</p>
+        <p class="ep-line" style="--j:3">也許也會慢慢模糊。</p>
+        <p class="ep-line ep-space" style="--j:4">&nbsp;</p>
+        <p class="ep-line" style="--j:5">但我希望，</p>
+        <p class="ep-line" style="--j:6">我們一起走過的每一天，</p>
+        <p class="ep-line" style="--j:7">都能成為彼此最珍貴的回憶。</p>
+        <p class="ep-line ep-heart" style="--j:8">❤️</p>
+      </div>
+      <div class="ending-final" id="ending-final">
+        <p class="ending-anniversary">Happy 1st Anniversary</p>
+        <p class="ending-dates">2025.06.28 → ∞</p>
+        <p class="ending-continue">To be continued… ✨</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
